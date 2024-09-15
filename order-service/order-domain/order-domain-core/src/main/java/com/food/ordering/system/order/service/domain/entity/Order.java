@@ -16,6 +16,7 @@ public class Order extends AggregateRoot<OrderId> {
     private final StreetAddress deliveryAddress;
     private final Money price;
     private final List<OrderItem> items;
+
     private TrackingId trackingId;
     private OrderStatus orderStatus;
     private List<String> failureMessages;
@@ -69,7 +70,7 @@ public class Order extends AggregateRoot<OrderId> {
     }
 
     public void initCancel(List<String> failureMessages){
-        if(orderStatus != OrderStatus.PAID{
+        if(orderStatus != OrderStatus.PAID){
             throw new OrderDomainException("Order is not correct state for initCancel operation!");
         }
         orderStatus = OrderStatus.CANCELLING;
